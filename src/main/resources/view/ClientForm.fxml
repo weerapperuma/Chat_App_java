@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="672.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.ClientFormController">
+    <children>
+        <TextArea fx:id="txtAreaClient" layoutX="14.0" layoutY="44.0" prefHeight="558.0" prefWidth="577.0" />
+        <Label alignment="CENTER" layoutX="121.0" layoutY="10.0" prefHeight="28.0" prefWidth="326.0" text="Client">
+            <font>
+                <Font name="Comfortaa Bold" size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="txtSendMessage" layoutX="32.0" layoutY="619.0" prefHeight="26.0" prefWidth="434.0" />
+        <JFXButton layoutX="502.0" layoutY="619.0" onAction="#btnSendOnAction" text="Send" />
+    </children>
+</AnchorPane>
