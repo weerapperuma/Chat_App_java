@@ -8,20 +8,22 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="910.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserLogingChekFormController">
+<AnchorPane prefHeight="910.0" prefWidth="630.0" stylesheets="@../style/iconButton.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserLogingChekFormController">
    <children>
-      <Pane layoutX="134.0" layoutY="386.0" prefHeight="237.0" prefWidth="377.0">
+      <Pane layoutX="128.0" layoutY="234.0" prefHeight="389.0" prefWidth="383.0">
          <children>
-            <ImageView fitHeight="74.0" fitWidth="200.0" layoutX="146.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="231.0" fitWidth="163.0" layoutX="109.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assests/man.png" />
                </image>
             </ImageView>
-            <TextField fx:id="txtNameFx" layoutX="78.0" layoutY="133.0" onAction="#txtNameOnAction" prefHeight="43.0" prefWidth="227.0" style="-fx-background-radius: 20;" />
-            <JFXButton layoutX="161.0" layoutY="190.0" onAction="#chatOnAction" text="Chat">
+            <TextField fx:id="txtNameFx" layoutX="78.0" layoutY="210.0" onAction="#txtNameOnAction" prefHeight="43.0" prefWidth="227.0" style="-fx-background-radius: 20;">
                <font>
-                  <Font name="Comfortaa Regular" size="13.0" />
+                  <Font name="Comfortaa Bold" size="28.0" />
+               </font></TextField>
+            <JFXButton layoutX="150.0" layoutY="276.0" onAction="#chatOnAction" prefHeight="57.0" prefWidth="101.0" style="-fx-background-color: orange; -fx-border-radius: 20; -fx-background-radius: 20;" text="Chat">
+               <font>
+                  <Font name="Comfortaa Bold" size="21.0" />
                </font>
             </JFXButton>
          </children>
