@@ -88,4 +88,10 @@
     -fx-border-color: transparent;
     -fx-text-fill: #000000;
 }
-.btn
+
+.scroll-pane{
+    -fx-background-color:transparent;
+}
+.scroll-pane > .viewport {  //not .scrollpane but .scroll-pane
+-fx-background-color: transparent;
+}

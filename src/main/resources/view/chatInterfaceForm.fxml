@@ -28,14 +28,10 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <ScrollPane layoutX="3.0" layoutY="2.0" prefHeight="835.0" prefWidth="621.0" visible="false">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="832.0" prefWidth="619.0">
-               <children>
-                  <VBox fx:id="vboxChatLoad" prefHeight="832.0" prefWidth="619.0" style="-fx-border-color: blue;" />
-               </children>
-            </AnchorPane>
-        </content>
+      <ScrollPane prefHeight="843.0" prefWidth="630.0">
+         <content>
+            <VBox fx:id="vboxChatLoad" prefHeight="832.0" prefWidth="619.0" style="-fx-border-color: blue;" />
+         </content>
       </ScrollPane>
    </children>
 </AnchorPane>

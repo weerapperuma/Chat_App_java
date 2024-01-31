@@ -25,6 +25,7 @@ public class ChatInterfaceFormController {
     Socket clientSocket;
     String message="";
 
+    public static VBox mainVbox;
     @FXML
     void btnAddEmojiOnAction(ActionEvent event) {
 
@@ -38,11 +39,15 @@ public class ChatInterfaceFormController {
     @FXML
     void txtSendMsgOnAction(ActionEvent event) throws IOException {
         dataOutputStream.writeUTF(txtSendMsg.getText());
+        createSendMsg(txtSendMsg.getText());
         txtSendMsg.clear();
         dataOutputStream.flush();
     }
 
+
+
     public void initialize(){
+        mainVbox=vboxChatLoad;
         new Thread(()->{
             try {
                 clientSocket=new Socket("localhost",3008);
@@ -50,8 +55,8 @@ public class ChatInterfaceFormController {
                 dataOutputStream=new DataOutputStream(clientSocket.getOutputStream());
 
                 while (!message.equals("end")){
-                    dataInputStream.readUTF();
-                    createInboxMsg(message);
+                    message=dataInputStream.readUTF();
+                    createInboxMsg("hello");
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -66,7 +71,17 @@ public class ChatInterfaceFormController {
 
         controller1.setData(message);
 
-        vboxChatLoad.getChildren().add(root);
+        mainVbox.getChildren().add(root);
+    }
+
+    private void createSendMsg(String text) throws IOException {
+        FXMLLoader loader=new FXMLLoader(ChatInterfaceFormController.class.getResource("/view/SendMsgLoadPane.fxml"));
+        Parent root=loader.load();
+        SendMsgLoadPaneController controller2=loader.getController();
+
+        controller2.setData(text);
+
+        mainVbox.getChildren().add(root);
     }
 
 }

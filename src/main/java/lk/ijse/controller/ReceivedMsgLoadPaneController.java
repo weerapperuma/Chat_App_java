@@ -8,10 +8,7 @@ public class ReceivedMsgLoadPaneController {
     @FXML
     private Label lblReceivedText;
 
-    @FXML
-    private Label lblSendPane;
-
     public void setData(String message) {
-        lblReceivedText.setText(message);
+        this.lblReceivedText.setText(message);
     }
 }
