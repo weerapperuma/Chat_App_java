@@ -1,5 +1,6 @@
 package lk.ijse.controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,9 +39,10 @@ public class ChatInterfaceFormController {
 
     @FXML
     void txtSendMsgOnAction(ActionEvent event) throws IOException {
+        dataOutputStream.writeUTF(UserLogingChekFormController.name);
         dataOutputStream.writeUTF(txtSendMsg.getText());
         createSendMsg(txtSendMsg.getText());
-        txtSendMsg.clear();
+        //txtSendMsg.clear();
         dataOutputStream.flush();
     }
 
@@ -56,7 +58,18 @@ public class ChatInterfaceFormController {
 
                 while (!message.equals("end")){
                     message=dataInputStream.readUTF();
-                    createInboxMsg("hello");
+                    Platform.runLater(()->{
+                        try {
+                            String trimmedMessage=message.substring(message.indexOf(":")+1).trim();
+                            if(!txtSendMsg.getText().equals(trimmedMessage)){
+                                createInboxMsg(message);
+                                txtSendMsg.clear();
+                            }txtSendMsg.clear();
+
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
