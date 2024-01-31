@@ -16,6 +16,7 @@ public class MultiClientServer implements Runnable{
     Socket localSocket;
     List<MultiClientServer> multiClientServers;
     String message="";
+    private String name;
 
     DataInputStream dataInputStream;
     DataOutputStream dataOutputStream;
@@ -32,36 +33,20 @@ public class MultiClientServer implements Runnable{
         System.out.println("client connected");
         while (!message.equals("end")){
             try {
+                name=dataInputStream.readUTF();
                 message=dataInputStream.readUTF();
                 System.out.println("Server : "+message);
-                Platform.runLater(() -> {
-                    try {
-                        System.out.println("tyr ad badhd");
-                        createInboxMsg(message);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
+
+                for (MultiClientServer multiClientServer:multiClientServers){
+                    multiClientServer.dataOutputStream.writeUTF(name+": "+message);
+                    dataOutputStream.flush();
+                }
 
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-    }
-    private void createInboxMsg(String message) throws IOException {
-        try {
-            System.out.println("Inside create inbox");
-                FXMLLoader loader = new FXMLLoader(ChatInterfaceFormController.class.getResource("/view/RecivedMsgLoadPane.fxml"));
-                Parent root = loader.load();
-                ReceivedMsgLoadPaneController controller1 = loader.getController();
-
-                controller1.setData(message);
-
-                ChatInterfaceFormController.mainVbox.getChildren().add(root);
-            } catch (IOException e) {
-                e.printStackTrace(); // Handle the exception appropriately
-            }
     }
 
 }
