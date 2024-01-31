@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,7 +10,6 @@
 
 <AnchorPane prefHeight="910.0" prefWidth="630.0" stylesheets="@../style/iconButton.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.ChatInterfaceFormController">
    <children>
-      <VBox fx:id="vboxChatLoad" layoutX="7.0" layoutY="4.0" prefHeight="832.0" prefWidth="618.0" style="-fx-border-color: blue;" />
       <TextField fx:id="txtSendMsg" layoutX="84.0" layoutY="861.0" onAction="#txtSendMsgOnAction" prefHeight="35.0" prefWidth="467.0" style="-fx-background-radius: 20;" />
       <JFXButton layoutX="14.0" layoutY="850.0" onAction="#btnAddImageOnAction" prefHeight="54.0" prefWidth="60.0" styleClass="btnSave" text="">
          <graphic>
@@ -28,5 +28,14 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <ScrollPane layoutX="3.0" layoutY="2.0" prefHeight="835.0" prefWidth="621.0" visible="false">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="832.0" prefWidth="619.0">
+               <children>
+                  <VBox fx:id="vboxChatLoad" prefHeight="832.0" prefWidth="619.0" style="-fx-border-color: blue;" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
