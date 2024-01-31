@@ -23,6 +23,7 @@ public class ServerFormController {
     Socket localSocket;
     DataInputStream dataInputStream;
     DataOutputStream dataOutputStream;
+    String message="";
 
 
     public void initialize(){
@@ -32,7 +33,15 @@ public class ServerFormController {
                 txtAreaServer.appendText("Server Started Successfully");
 
                 localSocket=serverSocket.accept();
-                txtAreaServer.appendText("Client Connected");
+                txtAreaServer.appendText("\nClient Connected");
+
+                dataInputStream = new DataInputStream(localSocket.getInputStream());
+                dataOutputStream=new DataOutputStream(localSocket.getOutputStream());
+
+                while (!message.equals("end")){
+                    message=dataInputStream.readUTF();
+                    txtAreaServer.appendText("\nClient message :"+message);
+                }
 
 
             } catch (IOException e) {
@@ -41,8 +50,10 @@ public class ServerFormController {
         }).start();
     }
     @FXML
-    void btnSendOnAction(ActionEvent event) {
-
+    void btnSendOnAction(ActionEvent event) throws IOException {
+        dataOutputStream.writeUTF(txtSendMessage.getText().trim());
+        txtSendMessage.clear();
+        dataOutputStream.flush();
     }
 
 }
