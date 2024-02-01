@@ -13,9 +13,10 @@
    <children>
       <Pane fx:id="chatPane" prefHeight="910.0" prefWidth="630.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ScrollPane prefHeight="843.0" prefWidth="630.0">
+            <TextField fx:id="txtSendMsg" layoutX="89.0" layoutY="844.0" onAction="#txtSendMsgOnAction" prefHeight="33.0" prefWidth="467.0" style="-fx-background-radius: 20;" styleClass="font" />
+            <ScrollPane prefHeight="834.0" prefWidth="630.0">
                <content>
-                  <VBox fx:id="vboxChatLoad" prefHeight="832.0" prefWidth="619.0" style="-fx-border-color: blue;" />
+                  <VBox fx:id="vboxChatLoad" prefHeight="832.0" prefWidth="628.0" />
                </content>
             </ScrollPane>
             <JFXButton layoutX="14.0" layoutY="843.0" onAction="#btnAddImageOnAction" prefHeight="54.0" prefWidth="60.0" styleClass="btnSave" text="">
@@ -27,7 +28,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="556.0" layoutY="843.0" onAction="#btnAddEmojiOnAction" prefHeight="54.0" prefWidth="60.0" styleClass="btnSave" text="">
+            <JFXButton layoutX="562.0" layoutY="843.0" onAction="#btnAddEmojiOnAction" prefHeight="54.0" prefWidth="60.0" styleClass="btnSave" text="">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="btnClose">
                      <image>
@@ -36,12 +37,11 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <TextField fx:id="txtSendMsg" layoutX="89.0" layoutY="853.0" onAction="#txtSendMsgOnAction" prefHeight="35.0" prefWidth="467.0" style="-fx-background-radius: 20;" />
-            <Pane fx:id="emojiPane" layoutX="177.0" layoutY="470.0" prefHeight="380.0" prefWidth="380.0">
+            <Pane fx:id="emojiPane" layoutX="177.0" layoutY="461.0" prefHeight="372.0" prefWidth="380.0">
                <children>
-                  <ScrollPane fx:id="emojiScrollPane" prefHeight="380.0" prefWidth="380.0">
+                  <ScrollPane fx:id="emojiScrollPane" prefHeight="372.0" prefWidth="380.0">
                      <content>
-                        <VBox fx:id="emojiBox" prefHeight="378.0" prefWidth="378.0" style="-fx-background-color: orange;" />
+                        <VBox fx:id="emojiBox" prefHeight="369.0" prefWidth="378.0" style="-fx-background-color: orange;" />
                      </content>
                   </ScrollPane>
                </children></Pane>

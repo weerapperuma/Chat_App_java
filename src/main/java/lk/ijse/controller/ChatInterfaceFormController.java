@@ -10,6 +10,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -19,6 +21,7 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import lk.ijse.util.Navigation;
 
+import java.awt.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -42,6 +45,7 @@ public class ChatInterfaceFormController implements Initializable {
     private Pane emojiPane;
     @FXML
     private VBox emojiBox;
+    public VBox imageBox;
 
     @FXML
     private ScrollPane emojiScrollPane;
@@ -52,6 +56,7 @@ public class ChatInterfaceFormController implements Initializable {
     Socket clientSocket;
     String message="";
     String unicode2;
+    private String filePath;
 
     public static VBox mainVbox;
     @FXML
@@ -61,12 +66,46 @@ public class ChatInterfaceFormController implements Initializable {
     }
 
     @FXML
-    void btnAddImageOnAction(ActionEvent event) {
-        FileChooser fileChooser=new FileChooser();
-        File selectedFile=fileChooser.showOpenDialog(null);
-        /*if(selectedFile!=null){
-            filePath=
-        }*/
+    void btnAddImageOnAction(ActionEvent event) throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            filePath = selectedFile.getAbsolutePath();
+            dataOutputStream.writeUTF(UserLogingChekFormController.name);
+        }
+
+
+        dataOutputStream.writeUTF("image"+ filePath);
+        try {
+
+
+            File inputFile = new File(filePath);
+            Image image = new Image(inputFile.toURI().toString());
+            ImageView imageView = new ImageView(image);
+
+            imageView.setFitWidth(200);
+            imageView.setPreserveRatio(true);
+            imageView.setOnMouseClicked(event1 -> {
+                // Open the image when clicked
+                try {
+                    File file = new File(filePath);
+                    Desktop.getDesktop().open(file);
+                } catch (IOException e) {
+                    e.printStackTrace();    }
+            });
+            TextFlow textFlow = new TextFlow();
+            textFlow.getChildren().add(imageView);
+            textFlow.setStyle("-fx-background-color:  #005C4B; -fx-background-radius: 10 10 0 10");
+            HBox vBox = new HBox(10);
+            vBox.setAlignment(Pos.BOTTOM_RIGHT);
+
+
+
+            vBox.getChildren().add(textFlow);
+            imageBox.getChildren().add(vBox);
+
+        }catch (Exception e){}
+        dataOutputStream.flush();
     }
 
     @FXML
@@ -142,8 +181,8 @@ public class ChatInterfaceFormController implements Initializable {
 
         vBox.getChildren().add(text);
         vBox.setAlignment(Pos.BOTTOM_RIGHT);
-        //imageBox.setAlignment(Pos.BOTTOM_RIGHT);
-        //imageBox.getChildren().add(vBox);
+        imageBox.setAlignment(Pos.BOTTOM_RIGHT);
+        imageBox.getChildren().add(vBox);
     }
 
     private void setEmojis() {
@@ -258,7 +297,7 @@ public class ChatInterfaceFormController implements Initializable {
         createSendMsg(unicode);
 
 
-        //imageBox.getChildren().add(vBox);
+        imageBox.getChildren().add(vBox);
 
         dataOutputStream.flush();
     }

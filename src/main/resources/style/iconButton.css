@@ -1,6 +1,9 @@
 .font {
     -fx-font-family: "System Bold";
+    -fx-font-size: 26;
+    -fx-font-weight: bold;
 }
+
 
 .bold-font {
     -fx-font-family: "System Bold";
