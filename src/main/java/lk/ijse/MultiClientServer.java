@@ -1,11 +1,5 @@
 package lk.ijse;
 
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import lk.ijse.controller.ChatInterfaceFormController;
-import lk.ijse.controller.ReceivedMsgLoadPaneController;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;

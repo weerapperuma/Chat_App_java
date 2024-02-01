@@ -41,7 +41,7 @@
                <children>
                   <ScrollPane fx:id="emojiScrollPane" prefHeight="380.0" prefWidth="380.0">
                      <content>
-                        <VBox fx:id="emojiBox" prefHeight="378.0" prefWidth="378.0" />
+                        <VBox fx:id="emojiBox" prefHeight="378.0" prefWidth="378.0" style="-fx-background-color: orange;" />
                      </content>
                   </ScrollPane>
                </children></Pane>

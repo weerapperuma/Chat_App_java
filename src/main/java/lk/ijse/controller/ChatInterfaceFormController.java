@@ -51,11 +51,13 @@ public class ChatInterfaceFormController implements Initializable {
     DataOutputStream dataOutputStream;
     Socket clientSocket;
     String message="";
+    String unicode2;
 
     public static VBox mainVbox;
     @FXML
     void btnAddEmojiOnAction(ActionEvent event) throws IOException {
         emojiPane.setVisible(true);
+        //createSendMsg();
     }
 
     @FXML
@@ -137,6 +139,7 @@ public class ChatInterfaceFormController implements Initializable {
         VBox vBox = new VBox(10);
         Text text = new Text(emoji);
         text.setStyle("-fx-font-size: 50px; -fx-fill: #FAD22D; -fx-border-width: 10");
+
         vBox.getChildren().add(text);
         vBox.setAlignment(Pos.BOTTOM_RIGHT);
         //imageBox.setAlignment(Pos.BOTTOM_RIGHT);
@@ -203,17 +206,19 @@ public class ChatInterfaceFormController implements Initializable {
 
         VBox vBox = new VBox();
         vBox.setSpacing(10);
-        int columns = 4;
+        int columns = 6;
         int rows = (int) Math.ceil(emojiUnicodes.size() / (double) columns);
-        System.out.println(rows);
+
         for (int row = 0; row < rows; row++) {
             HBox hbox = new HBox();
-            hbox.setSpacing(10);
+            hbox.setSpacing(30);
 
             for (int col = 0; col < columns; col++) {
                 int index = row * columns + col;
                 if (index < emojiUnicodes.size()) {
                     String unicode = emojiUnicodes.get(index);
+                    unicode2=unicode;
+
                     Text emojiText = new Text(unicode);
                     hbox.getChildren().add(emojiText);
                     hbox.setStyle("-fx-font-size: 24px; -fx-fill: black; -fx-border-width: 10");
@@ -223,7 +228,6 @@ public class ChatInterfaceFormController implements Initializable {
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
-                        //emojiScrollPane.setVisible(false);
                     });
                 }
             }
@@ -245,10 +249,13 @@ public class ChatInterfaceFormController implements Initializable {
         HBox vBox= new HBox(10);
         vBox.setAlignment(Pos.BOTTOM_RIGHT);
         dataOutputStream.writeUTF(UserLogingChekFormController.name);
-        dataOutputStream.writeUTF("emj"+unicode);
+        dataOutputStream.writeUTF(unicode);
+
 
 
         vBox.getChildren().add(textFlow);
+        emojiPane.setVisible(false);
+        createSendMsg(unicode);
 
 
         //imageBox.getChildren().add(vBox);
