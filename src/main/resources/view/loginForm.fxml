@@ -20,5 +20,10 @@
             <Font name="Comfortaa Bold" size="26.0" />
          </font>
       </Label>
+      <Label fx:id="lblTime" alignment="CENTER_RIGHT" layoutX="400.0" layoutY="7.0" prefHeight="49.0" prefWidth="216.0" text="Time" textFill="WHITE">
+         <font>
+            <Font name="Comfortaa Bold" size="26.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

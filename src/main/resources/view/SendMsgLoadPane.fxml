@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="50.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SendMsgLoadPaneController">
     <children>
-        <Label fx:id="lblSentText" alignment="CENTER_RIGHT" layoutX="86.0" layoutY="3.0" prefHeight="44.0" prefWidth="529.0" text="Label" textFill="#1316e4">
+        <Label fx:id="lblSentText" alignment="CENTER_RIGHT" layoutX="86.0" layoutY="3.0" prefHeight="44.0" prefWidth="529.0" text="Label" textFill="WHITE">
             <font>
                 <Font name="Comfortaa SemiBold" size="20.0" />
             </font>
