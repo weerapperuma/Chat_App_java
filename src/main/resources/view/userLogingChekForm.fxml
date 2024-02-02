@@ -12,9 +12,9 @@
    <children>
       <Pane layoutX="128.0" layoutY="234.0" prefHeight="389.0" prefWidth="383.0">
          <children>
-            <ImageView fitHeight="231.0" fitWidth="163.0" layoutX="109.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="162.0" fitWidth="189.0" layoutX="98.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assests/man.png" />
+                  <Image url="@../assests/kindpng_1140954.png" />
                </image>
             </ImageView>
             <TextField fx:id="txtNameFx" layoutX="78.0" layoutY="210.0" onAction="#txtNameOnAction" prefHeight="43.0" prefWidth="227.0" style="-fx-background-radius: 20;">

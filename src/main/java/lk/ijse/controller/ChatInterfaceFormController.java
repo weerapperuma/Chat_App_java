@@ -45,7 +45,7 @@ public class ChatInterfaceFormController implements Initializable {
     private Pane emojiPane;
     @FXML
     private VBox emojiBox;
-    public VBox imageBox;
+    //public VBox imageBox;
 
     @FXML
     private ScrollPane emojiScrollPane;
@@ -101,8 +101,8 @@ public class ChatInterfaceFormController implements Initializable {
 
 
 
-            vBox.getChildren().add(textFlow);
-            imageBox.getChildren().add(vBox);
+            vboxChatLoad.getChildren().add(textFlow);
+            vboxChatLoad.getChildren().add(vBox);
 
         }catch (Exception e){}
         dataOutputStream.flush();
@@ -181,8 +181,8 @@ public class ChatInterfaceFormController implements Initializable {
 
         vBox.getChildren().add(text);
         vBox.setAlignment(Pos.BOTTOM_RIGHT);
-        imageBox.setAlignment(Pos.BOTTOM_RIGHT);
-        imageBox.getChildren().add(vBox);
+        mainVbox.setAlignment(Pos.BOTTOM_RIGHT);
+        mainVbox.getChildren().add(vBox);
     }
 
     private void setEmojis() {
@@ -297,7 +297,7 @@ public class ChatInterfaceFormController implements Initializable {
         createSendMsg(unicode);
 
 
-        imageBox.getChildren().add(vBox);
+        vboxChatLoad.getChildren().add(vBox);
 
         dataOutputStream.flush();
     }
