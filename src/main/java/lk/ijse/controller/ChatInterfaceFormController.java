@@ -17,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import lk.ijse.util.Navigation;
@@ -72,10 +73,11 @@ public class ChatInterfaceFormController implements Initializable {
         if (selectedFile != null) {
             filePath = selectedFile.getAbsolutePath();
             dataOutputStream.writeUTF(UserLogingChekFormController.name);
+            dataOutputStream.writeUTF("image: "+filePath);
         }
 
 
-        dataOutputStream.writeUTF("image"+ filePath);
+//        dataOutputStream.writeUTF("image: "+ filePath);
         try {
 
 
@@ -156,10 +158,19 @@ public class ChatInterfaceFormController implements Initializable {
                     Platform.runLater(()->{
                         try {
                             String trimmedMessage=message.substring(message.indexOf(":")+1).trim();
-                            if(!txtSendMsg.getText().equals(trimmedMessage)){
+                            boolean containsImageKeyword = containsImageKeyword(message);
+
+                            if(containsImageKeyword && filePath!=null){
+                                loadImage();
+                            }
+
+
+                            else if(!txtSendMsg.getText().equals(trimmedMessage)){
+
                                 createInboxMsg(message);
                                 txtSendMsg.clear();
-                            }txtSendMsg.clear();
+                            }
+                            txtSendMsg.clear();
 
                         } catch (IOException e) {
                             throw new RuntimeException(e);
@@ -170,6 +181,55 @@ public class ChatInterfaceFormController implements Initializable {
                 throw new RuntimeException(e);
             }
         }).start();
+    }
+
+    private void loadImage() {
+        String imagePath = filePath;
+        System.out.println(imagePath);
+
+        Platform.runLater(() -> {
+            vboxChatLoad.setAlignment(Pos.TOP_LEFT);
+            File inputFile = new File(filePath);
+            Image image = new Image(inputFile.toURI().toString());
+            ImageView imageView = new ImageView(image);
+//                            imageView.setFitHeight(100);
+            imageView.setFitWidth(200);
+            imageView.setPreserveRatio(true);
+            imageView.setOnMouseClicked(event -> {
+                // Open the image when clicked
+                try {
+                    File file = new File(imagePath);
+                    Desktop.getDesktop().open(file);
+                } catch (IOException e) {
+                    e.printStackTrace();    }
+            });
+            HBox hBox = new HBox(10);
+            Text text = new Text(" "+": ");
+            text.setStyle("-fx-font-size: 15px; -fx-fill: white");
+
+            TextFlow textFlow = new TextFlow();
+            textFlow.getChildren().add(text);
+            textFlow.setPadding(new javafx.geometry.Insets(2,10,2,10));
+            VBox vBox = new VBox();
+            vBox.getChildren().add(imageView);
+            TextFlow textFlow2 = new TextFlow();
+            textFlow2.getChildren().add(vBox);
+            textFlow2.setStyle("-fx-background-color:  black; -fx-background-radius: 0 10 10 10; -fx-font-style: white;");
+            textFlow2.setPadding(new javafx.geometry.Insets(2,10,2,10));
+
+            hBox.getChildren().addAll(textFlow,textFlow2);
+            hBox.setAlignment(Pos.BOTTOM_LEFT);
+
+            vboxChatLoad.getChildren().add(hBox);
+        });
+    }
+
+    private static boolean containsImageKeyword(String message) {
+        // Convert the message to lowercase for case-insensitive matching
+        String lowerCaseMessage = message.toLowerCase();
+
+        // Check if the lowercased message contains the keyword "image"
+        return lowerCaseMessage.contains("image");
     }
 
     private void emojis() {
